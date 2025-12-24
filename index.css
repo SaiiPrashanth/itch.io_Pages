@@ -5,7 +5,7 @@
 /* Blackhole theme with animated background */
 body {
   background-color: #000000 !important;
-  background-image: url('YOUR_GIF_URL_HERE') !important;
+  background-image: url('https://raw.githubusercontent.com/saiiprashanth/itchio/main/Blackhole.gif') !important;
   background-size: cover !important;
   background-position: center center !important;
   background-attachment: fixed !important;
