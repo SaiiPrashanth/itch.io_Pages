@@ -1,196 +1,26 @@
-.user_links { display: none; }
-.game_platform { display: none; }
-.game_genre {display: none;}
-
-/* Blackhole theme with animated background */
-body {
-  background-color: #000000 !important;
-  background-image: url('https://raw.githubusercontent.com/saiiprashanth/itchio/main/Blackhole.gif') !important;
-  background-size: cover !important;
-  background-position: center center !important;
-  background-attachment: fixed !important;
-  background-repeat: no-repeat !important;
-}
-
-.user_page {
-  background: rgba(0, 0, 0, 0.85) !important;
-  color: #ffffff !important;
-  backdrop-filter: blur(2px);
-}
-
-.user_page_wrap {
-  background: transparent !important;
-}
-
-.user_page a {
-  color: #00ffff !important;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-}
-
-.footer {
-  background-color: rgba(0, 0, 0, 0.9) !important;
-  color: #ffffff !important;
-}
-
-.footer a {
-  color: #00ffff !important;
-}
-
-.mode_grid .user_game_grid .game_cell {
-  margin:20px 20px 20px 20px;
-  box-sizing:border-box;
-  text-align:center !important;
-}
-
-.game_grid_widget{
-  grid-template-columns: repeat(auto-fill, minmax(315px, 1fr)) !important;
-}
-
-/* animations */
-
-@keyframes glow{
-  0%   {brightness(1); -webkit-filter: brightness(1);}
-  20%  {brightness(1.2); -webkit-filter: brightness(1.5);}
-  100% {brightness(1); -webkit-filter: brightness(1);}
-}
-
-@keyframes bgglow{
-  0%   {background-color: #000033;}
-  20%  {background-color: #000066;}
-  100% {background-color: #000033;}
-}
-
-/*
-#000000 - black (background)
-#000033 - dark blue (cells)
-#00ffff - cyan (links/titles)
-#ffffff - white (text)
-*/
-
-/* cells */
-
-.game_cell{
-  background: rgba(0, 0, 51, 0.7) !important;
-  outline-style: solid;
-  outline-color: #000066;
-  outline-offset: -3px;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-
-  transition-property: background, outline, outline-offset, box-shadow;
-  transition-duration: 0.2s;
-  transition-timing-function: ease-in-out;
-
-}
-
-.game_cell:hover{
-  background: rgba(0, 0, 51, 0.3) !important;
-  outline-style: solid;
-  outline-color: #00ffff;
-  outline-offset: 12px;
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
-
-  transition-delay: 0s;
-}
-
-.mode_grid .user_game_grid .game_thumb {
-  text-align:center !important;
-  box-shadow:none !important;
-  margin-left: auto;
-  margin-right: auto;
-  height:250px !important;
-  width:315px !important;
-  border-radius: 24px;
-  overflow: hidden;
-}
-
-.user_game_grid .game_cell {
-  background-color: rgba(0, 0, 51, 0.7);
-  border-radius: 26px;
-  z-index: 0;
-  height: 350px;
-  backdrop-filter: blur(5px);
-}
-
-.game_thumb {
-  transition: transform 0.2s ease-in-out;
-  transform: translate(0px,0px);
-}
-.game_thumb:hover {
-  transform: translate(0px,-8px);
-}
-
-.user_profile {
-  margin-bottom: 48px;
-}
-
-.inner_column {
-  max-width: none;
-  text-align: center;
-}
-
-.game_cell.has_cover{
-  width:315px !important;
-}
-
-@media screen and (min-width: 1921px) {
-  .inner_column {
-    width:1820px !important;
-  }
-}
-
-/* genre and platform */
-
-.user_game_grid .game_cell .game_platform,
-.user_game_grid .game_cell .game_genre {
-  font-family: sans-serif;
-  font-size:14px;
-  text-transform: lowercase;
-  margin-top: 6px;
-  top: 225px;
-  /*position: absolute;*/
-  z-index: -1;
-}
-
-.user_game_grid .game_cell .game_genre {
-  left: 16px;
-}
-.user_game_grid .game_cell .game_platform {
-  right: 16px;
-}
-
-/* text */
-
-.game_text {
-  color: #ffffff !important;
-  font-family: sans-serif;
-  font-size:14px !important;
-  margin: 6px 10px 8px 10px !important;
-}
-
-a.title{
-  color: #00ffff !important;
-  font-family: sans-serif;
-  font-size:20px;
-  text-transform: uppercase;
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.4);
-}
-
-.formatted {
-  font-family: sans-serif;
-}
-
-a:link {
-  text-decoration: none;
-}
-
-a:visited {
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-a:active {
-  text-decoration: underline;
-}
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes glow{0%,100%{box-shadow:0 0 15px rgba(140,180,220,.25)}50%{box-shadow:0 0 25px rgba(140,180,220,.45),0 0 40px rgba(140,180,220,.25)}}
+.user_page{background:#000 url('https://github.com/SaiiPrashanth/itchio/blob/main/Blackhole.gif?raw=true') center 0 fixed no-repeat !important;background-size:cover !important;color:#d4d4d4 !important;font-family:Orbitron,monospace !important}
+.user_page_wrap{background:transparent !important}
+.user_page a{color:#8cb4dc !important;text-shadow:0 0 8px rgba(140,180,220,.4)}
+.user_page .user_links,.user_page .game_platform,.user_page .game_genre{display:none}
+.user_page .mode_grid .user_game_grid .game_cell{margin:0 auto;box-sizing:border-box;text-align:center !important;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-top:35px;padding-bottom:15px}
+.user_page .game_grid_widget{grid-template-columns:repeat(auto-fill,minmax(315px,1fr)) !important;margin-bottom:0 !important;padding-bottom:100px !important;padding-left:20px !important;padding-right:20px !important;row-gap:50px !important}
+.user_page .game_cell{background:rgba(15,15,20,.65) !important;outline:3.5px solid rgba(140,180,220,0);outline-offset:2px;transition:background .3s,outline-color .3s,outline-offset .3s,box-shadow .3s;animation:float 6s ease-in-out infinite,glow 4s ease-in-out infinite}
+.user_page .game_cell:hover{background:rgba(15,15,20,.2) !important;outline-color:rgba(140,180,220,.75);outline-offset:18px;box-shadow:0 0 30px rgba(140,180,220,.5),0 0 60px rgba(140,180,220,.3),inset 0 0 15px rgba(140,180,220,.2)}
+.user_page .mode_grid .user_game_grid .game_thumb{text-align:center !important;box-shadow:none !important;margin:8px auto 10px;height:250px !important;width:315px !important;border-radius:24px;overflow:hidden}
+.user_page .user_game_grid .game_cell{background-color:rgba(15,15,20,.65);border-radius:26px;height:350px;backdrop-filter:blur(5px)}
+.user_page .game_thumb{transition:transform .4s,filter .3s;filter:brightness(.95)}
+.user_page .game_thumb:hover{transform:translateY(-8px);filter:brightness(1.05) drop-shadow(0 10px 20px rgba(140,180,220,.3))}
+.user_page .user_profile{margin-bottom:48px}
+.user_page .inner_column{max-width:none;text-align:center}
+.user_page .game_cell.has_cover{width:315px !important}
+@media screen and (max-width:768px){.user_page{background-position:70% 0 !important}.user_page .inner_column{padding-top:80px !important}}
+@media screen and (min-width:1921px){.user_page .inner_column{width:1820px !important}}
+.user_page .game_text{color:#d4d4d4 !important;font-family:Orbitron,monospace !important;font-size:14px !important;margin:10px auto !important;text-align:center;width:100%;display:block}
+.user_page a.title{color:#8cb4dc !important;font-family:Orbitron,monospace !important;font-size:20px;font-weight:700;text-transform:uppercase;text-shadow:0 0 8px rgba(140,180,220,.5),0 0 15px rgba(140,180,220,.3);transition:all .3s;display:block;text-align:center;width:100%;margin:15px auto 10px}
+.user_page a.title:hover{text-shadow:0 0 12px rgba(140,180,220,.7),0 0 20px rgba(140,180,220,.5),0 0 30px rgba(140,180,220,.3);text-decoration:underline !important;text-decoration-thickness:2px !important;text-underline-offset:8px !important;text-decoration-color:#8cb4dc !important}
+.user_page .formatted{font-family:Orbitron,monospace !important}
+.user_page a:link,.user_page a:visited{text-decoration:none}
+.user_page a:hover,.user_page a:active{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:8px;text-decoration-color:#8cb4dc !important}
