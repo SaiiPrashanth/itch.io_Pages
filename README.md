@@ -1,6 +1,6 @@
 # itch.io Pages
 
-This repository stores the custom HTML descriptions and CSS themes used for my [itch.io](https://itch.io) game pages.
+This repository stores the custom HTML descriptions and CSS themes used for my **[itch.io profile](https://saiiprashanth.itch.io/)** and game pages.
 
 ## Contents
 
