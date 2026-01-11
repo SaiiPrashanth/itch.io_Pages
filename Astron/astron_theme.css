@@ -1,0 +1,55 @@
+/* FONT IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Anonymous+Pro:wght@400;700&display=swap');
+
+/* SCOPED STYLES for #wrapper */
+
+#wrapper {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    font-family: 'Anonymous Pro', monospace !important;
+    
+    /* Global Space Animation */
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        radial-gradient(circle at center, #111111 0%, #000 100%) !important;
+    
+    background-size: 200px 200px, 300px 300px, 40px 40px, 40px 40px, 100% 100% !important;
+    background-attachment: fixed !important;
+    animation: space-drift 60s linear infinite !important;
+}
+
+@keyframes space-drift {
+    from { background-position: 0 0, 0 0, 0 0, 0 0, center center; }
+    to { background-position: 400px 800px, -200px 400px, 0 40px, 0 40px, center center; }
+}
+
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Force Transparency on Itch Containers */
+#wrapper .inner_column,
+#wrapper .formatted_description {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Run Game Button Override */
+.start_game_btn {
+    background: #000 !important;
+    border: 2px solid #fff !important;
+    color: #fff !important;
+    font-family: 'Syncopate', sans-serif !important;
+    font-weight: bold !important;
+    text-transform: uppercase !important;
+    border-radius: 0 !important;
+    padding: 20px 40px !important;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
+}
+
+.start_game_btn:hover {
+    background: #fff !important;
+    color: #000 !important;
+}

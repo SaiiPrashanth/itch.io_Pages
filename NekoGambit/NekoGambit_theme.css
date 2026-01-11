@@ -1,0 +1,79 @@
+/* FONT IMPORTS */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap');
+
+/* SCOPED STYLES for #wrapper */
+
+#wrapper {
+    --gold: #d4af37;
+    --onyx: #1a1a1a;
+    --sand: #c2b280;
+    --ancient-text: #3e2723; /* Dark brown for maximum visibility */
+    
+    font-family: 'Philosopher', sans-serif !important;
+    background-color: var(--sand) !important;
+    color: var(--onyx) !important;
+    
+    /* SANDSTORM BACKGROUND */
+    background-image: 
+        radial-gradient(circle, transparent 40%, rgba(0,0,0,0.4) 100%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E"),
+        linear-gradient(to bottom, #e6c288, #c2b280) !important;
+    background-size: 100% 100%, 512px 512px, 100% 100% !important;
+    background-attachment: fixed !important;
+    animation: sand-drift 60s linear infinite !important;
+}
+
+@keyframes sand-drift {
+    from { background-position: center center, 0 0, center center; }
+    to { background-position: center center, 512px -256px, center center; }
+}
+
+/* Force Transparency on Itch Containers */
+#wrapper .inner_column,
+#wrapper .formatted_description {
+    background: transparent !important;
+    border: none !important;
+}
+
+/* --- HEADERS --- */
+#wrapper h1, #wrapper h2, #wrapper h3 {
+    font-family: 'Cinzel Decorative', cursive !important;
+    text-transform: uppercase !important;
+    text-align: center !important;
+    letter-spacing: 2px !important;
+    margin: 40px 0 25px 0 !important;
+    line-height: 1.5 !important;
+}
+
+#wrapper h1 {
+    font-size: 4em !important;
+    color: #1a1a1a !important; /* Dark title */
+}
+
+#wrapper h2, #wrapper h3 {
+    color: #264e86 !important; /* Lapis Blue for subheaders */
+}
+
+#wrapper p {
+    color: var(--ancient-text) !important;
+    font-family: 'Philosopher', sans-serif !important;
+    font-size: 1.2em !important;
+    line-height: 1.8 !important;
+}
+
+/* Run Game Button Override */
+.start_game_btn {
+    background: radial-gradient(circle at 30% 30%, #4facfe 0%, #00f2fe 100%) !important;
+    color: #fff !important;
+    font-family: 'Cinzel Decorative', cursive !important;
+    font-weight: 700 !important;
+    border: 4px solid var(--gold) !important;
+    border-radius: 50px !important;
+    padding: 15px 50px !important;
+    box-shadow: 0 10px 0 #b8860b, 0 15px 20px rgba(0,0,0,0.4) !important;
+    text-transform: uppercase !important;
+}
+
+.start_game_btn::before {
+    content: "𓀀 " !important;
+}

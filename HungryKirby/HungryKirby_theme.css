@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+:root {
+    --retro-pink: #ff9cc2;
+    --retro-dark-pink: #d93a7a;
+    --retro-blue: #7bd4ff;
+    --retro-yellow: #fff394;
+    --retro-warp-star: #ffd93b; 
+    --retro-text: #2d1b2e;
+    --retro-white: #ffffff;
+    --retro-bg: #4a2444; 
+    --border-color: #2d1b2e;
+}
+
+::-webkit-scrollbar {
+    width: 16px;
+    background: #2d1b2e;
+}
+::-webkit-scrollbar-track {
+    background: #2d1b2e;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--retro-pink);
+    border: 4px solid #2d1b2e;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--retro-white);
+}
+
+@keyframes cloud-scroll {
+    from { background-position: 0 50px, 0 100px, 0 0; }
+    to { background-position: 500px 50px, 800px 100px, 0 0; }
+}
+
+@keyframes pulse-star {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.1) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+@keyframes float-star {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* SCOPED STYLES START HERE */
+
+#wrapper {
+    background-color: #62c1e5;
+    background-image: 
+        url("data:image/svg+xml,%3Csvg width='100' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 30h60v10H20zM30 15h40v30H30z' fill='%23ffffff' fill-opacity='0.4'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg width='60' height='30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 20h40v5H10zM20 10h20v20H20z' fill='%23ffffff' fill-opacity='0.2'/%3E%3C/svg%3E"),
+        linear-gradient(to bottom, #3b8bc2 0%, #87CEEB 100%);
+    background-size: 200px 100px, 120px 60px, 100% 100%;
+    background-repeat: repeat-x, repeat-x, no-repeat;
+    animation: cloud-scroll 40s linear infinite;
+    
+    font-family: 'VT323', monospace;
+    font-size: 20px;
+    color: var(--retro-text);
+    image-rendering: pixelated;
+}
+
+#wrapper::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+    background-size: 100% 4px;
+    z-index: 999;
+    pointer-events: none;
+}
+
+#wrapper #inner_column {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+#wrapper .header {
+    background: transparent;
+    border-bottom: none;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+#wrapper a, 
+#wrapper a:visited {
+    color: var(--retro-dark-pink);
+    font-weight: bold;
+    text-decoration: none;
+    background-color: rgba(255,255,255,0.5);
+    padding: 0 4px;
+    box-shadow: 2px 2px 0 var(--border-color);
+    transition: all 0.1s steps(2); 
+}
+
+#wrapper a:hover {
+    color: var(--retro-white);
+    background-color: var(--retro-dark-pink);
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
+
+#wrapper h1, 
+#wrapper h2, 
+#wrapper h3 {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--retro-dark-pink);
+    line-height: 1.5;
+    text-transform: uppercase;
+}
+
+#wrapper h1 { 
+    font-size: 1.8em; 
+    margin-bottom: 20px; 
+    text-align: center; 
+    text-shadow: 4px 4px 0 #fff, 6px 6px 0 var(--border-color);
+}
+
+#wrapper h2 { 
+    font-size: 1.2em; 
+    border-bottom: 4px solid var(--border-color); 
+    display: inline-block; 
+    padding-bottom: 10px; 
+    margin-top: 20px; 
+    background: var(--retro-yellow); 
+    color: var(--retro-text);
+    padding: 10px; 
+    box-shadow: 4px 4px 0 var(--border-color); 
+    text-shadow: none;
+}
+
+#wrapper h3 { font-size: 1em; }
+
+#wrapper .formatted_description {
+    line-height: 1.5;
+    color: var(--retro-text);
+    font-weight: 500;
+}
+
+#wrapper .custom-kirby-wrapper {
+    background: var(--retro-white);
+    padding: 30px;
+    border: 4px solid var(--border-color);
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.5);
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+#wrapper .custom-kirby-wrapper::after {
+    content: "";
+    position: absolute;
+    top: -4px; left: -4px; right: -4px; bottom: -4px;
+    box-shadow: inset 0 0 0 4px var(--retro-white);
+    pointer-events: none;
+    z-index: 1;
+}
+
+#wrapper .cloud-divider {
+    height: 20px;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--retro-blue),
+        var(--retro-blue) 10px,
+        var(--retro-white) 10px,
+        var(--retro-white) 20px
+    );
+    border: 2px solid var(--border-color);
+    margin: 40px 0;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+}
+
+#wrapper .custom-intro {
+    text-align: center;
+    margin-bottom: 40px;
+    background: var(--retro-pink);
+    padding: 20px;
+    border: 4px solid var(--border-color);
+    box-shadow: inset -4px -4px 0 rgba(0,0,0,0.1);
+}
+
+#wrapper .custom-tagline {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7em;
+    color: var(--retro-white);
+    text-shadow: 2px 2px 0 var(--border-color);
+    margin-top: 15px;
+    line-height: 1.5;
+}
+
+#wrapper .custom-section {
+    margin-bottom: 40px;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+#wrapper .custom-feature-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+#wrapper .custom-feature-list li {
+    background: #fff;
+    padding: 15px;
+    border: 2px solid var(--border-color);
+    box-shadow: 4px 4px 0 var(--retro-blue);
+    display: flex;
+    align-items: center;
+    transition: transform 0.1s steps(2);
+}
+
+#wrapper .custom-feature-list li:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--retro-blue);
+    background: var(--retro-yellow);
+}
+
+#wrapper .custom-feature-list .emoji {
+    font-size: 2em;
+    margin-right: 20px;
+    filter: drop-shadow(2px 2px 0 var(--border-color));
+}
+
+#wrapper .media-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#wrapper .custom-screenshot {
+    width: 100%;
+    border: 4px solid var(--border-color);
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.3);
+    transition: transform 0.1s;
+}
+
+#wrapper .custom-screenshot:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.3);
+}
+
+#wrapper .custom-credits {
+    text-align: center;
+    background: var(--retro-text);
+    color: var(--retro-white);
+    border: 4px solid var(--retro-white);
+    padding: 20px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.6em;
+    line-height: 2;
+}
+
+#wrapper .custom-credits h3 {
+    color: var(--retro-yellow);
+    text-shadow: none;
+    margin-bottom: 15px;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+/* STANDARD BUTTONS (Buy, Download) */
+#wrapper .upload_list_widget .upload_btn, 
+#wrapper .buy_btn {
+    background: var(--retro-dark-pink) !important;
+    border-radius: 0 !important;
+    color: white !important;
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 0.9em !important;
+    padding: 20px 20px !important;
+    border: 4px solid var(--border-color) !important;
+    box-shadow: inset -4px -4px 0 rgba(0,0,0,0.2), 4px 4px 0 var(--border-color) !important;
+    transition: all 0.1s steps(1) !important;
+    text-shadow: 2px 2px 0 var(--border-color) !important;
+    text-transform: uppercase;
+}
+
+#wrapper .upload_list_widget .upload_btn:hover, 
+#wrapper .buy_btn:hover {
+    background: var(--retro-pink) !important;
+    transform: translate(2px, 2px);
+    box-shadow: inset -4px -4px 0 rgba(0,0,0,0.2), 2px 2px 0 var(--border-color) !important;
+}
+
+#wrapper .upload_list_widget .upload_btn:active, 
+#wrapper .buy_btn:active {
+    transform: translate(4px, 4px);
+    box-shadow: inset 4px 4px 0 rgba(0,0,0,0.2), 0 0 0 var(--border-color) !important;
+}
+
+/* --- THE EMBED BOX (Game Frame) --- */
+#wrapper .game_frame,
+#wrapper .iframe_placeholder,
+#game_drop {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
+    border: 6px solid #887896 !important;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4) !important;
+}
+
+/* --- THE WARP STAR BUTTON --- */
+/* (Prefixed with ID to ensure it works within the scope) */
+#game_drop .start_game_btn,
+.game_holder .start_game_btn,
+.game_frame .start_game_btn,
+.game_frame .start_btn,
+.iframe_placeholder .start_game_btn,
+.iframe_placeholder button,
+.start_game_btn,
+.play_button,
+button.start_game {
+    /* Completely Transparent Box */
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    
+    /* Text Styling */
+    color: var(--retro-warp-star) !important;
+    text-shadow: 3px 3px 0 var(--retro-dark-pink) !important;
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 1.5em !important;
+    text-transform: uppercase !important;
+    
+    /* Layout */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    height: auto !important;
+    padding: 10px !important;
+    
+    position: relative !important;
+    z-index: 9999 !important;
+    
+    animation: float-star 2s ease-in-out infinite !important;
+}
+
+/* Add the Star Icon Character */
+#game_drop .start_game_btn::before,
+.game_holder .start_game_btn::before,
+.game_frame .start_btn::before,
+.start_game_btn::before {
+    content: "★ " !important;
+    color: var(--retro-warp-star) !important;
+    text-shadow: 3px 3px 0 var(--retro-dark-pink) !important;
+    margin-right: 10px !important;
+    display: inline-block !important;
+}
+
+/* Hover State - Scale up */
+#game_drop .start_game_btn:hover,
+.start_game_btn:hover {
+    transform: scale(1.1) !important;
+    cursor: pointer !important;
+    background: transparent !important;
+    text-shadow: 4px 4px 0 var(--retro-dark-pink) !important;
+}
+
+@media (max-width: 700px) {
+    #wrapper .media-container { grid-template-columns: 1fr; }
+    #wrapper h1 { font-size: 1.2em; }
+    #wrapper .custom-kirby-wrapper { padding: 15px; border-width: 2px; }
+}

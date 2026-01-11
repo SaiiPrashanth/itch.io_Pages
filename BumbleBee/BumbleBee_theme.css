@@ -1,0 +1,501 @@
+/* FONT IMPORTS */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* SCOPED STYLES for #wrapper */
+
+#wrapper {
+    /* Minecraft/Voxel Palette */
+    --grass-green: #59a338;
+    --dirt-brown: #5c3c28; /* Darker, richer brown */
+    --sky-blue: #6eb1ff;   /* More vibrant sky */
+    --cloud-white: #ffffff;
+    --honey-yellow: #ffc800;
+    --text-color: #2b2b2b;
+    --ui-bg: #c6c6c6;      /* Minecraft UI Grey */
+    --ui-border-light: #ffffff;
+    --ui-border-dark: #555555;
+    --ui-border-darker: #373737;
+    
+    font-family: 'VT323', monospace !important;
+    color: var(--text-color) !important;
+    
+    line-height: 1.6;
+    font-size: 26px; /* Large readable text */
+    image-rendering: pixelated;
+    
+    /* Custom Cursor */
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="white" stroke="black" stroke-width="1.5"><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M12 2l0 20" /><path d="M2 12l20 0" /></svg>') 16 16, crosshair !important;
+    
+    overflow-x: hidden; /* Prevent cloud overflow */
+}
+
+/* --- ANIMATED BACKGROUND SYSTEM --- */
+
+/* 1. WRAPPER & SKY COLOR CYCLE */
+#wrapper {
+    background-color: #ff9d5c !important; /* Default to Sunrise */
+    animation: sky-color-cycle 60s infinite;
+    position: relative;
+    z-index: 0; /* Stacking context root */
+    overflow-x: hidden;
+}
+
+/* Ensure all actual content sits above the background */
+#wrapper > * {
+    position: relative;
+    z-index: 5;
+}
+
+@keyframes sky-color-cycle {
+    /* --- Q1: SUNRISE TO NOON (0-25%) --- */
+    0% { background-color: #ff9d5c; } /* Sunrise Orange */
+    12% { background-color: #6eb1ff; } /* Blue Sky Fade In */
+    
+    /* --- Q2: NOON TO SUNSET (25-50%) --- */
+    25% { background-color: #6eb1ff; } /* High Noon Blue */
+    38% { background-color: #6eb1ff; } /* Stay Blue */
+    50% { background-color: #ff9d5c; } /* Sunset Orange */
+    
+    /* --- Q3: SUNSET TO MIDNIGHT (50-75%) --- */
+    62% { background-color: #1a1a3d; } /* Fade to Night */
+    75% { background-color: #1a1a3d; } /* Midnight Purple */
+    
+    /* --- Q4: MIDNIGHT TO DAWN (75-100%) --- */
+    88% { background-color: #1a1a3d; } /* Stay Night */
+    100% { background-color: #ff9d5c; } /* Back to Sunrise */
+}
+
+/* 2. SUN & MOON OBJECT (::before) */
+#wrapper::before {
+    content: "";
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    top: 100%;
+    left: -150px;
+    z-index: -2;
+    pointer-events: none;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    
+    animation: celestial-move 60s linear infinite;
+}
+
+@keyframes celestial-move {
+    /* --- SUN PHASE (0% - 50%) --- */
+    0% {
+        background-color: #fff000; /* Sun Yellow */
+        background-image: radial-gradient(circle closest-side, #fff000, #fff000);
+        left: -120px; 
+        top: 70%; /* Horizon */
+    }
+    25% { 
+        left: 50%; 
+        top: 5%; /* Peak High */
+    }  
+    49% { 
+        left: 110%; 
+        top: 70%; /* Horizon */
+        background-color: #fff000; 
+        opacity: 1;
+    }
+    
+    /* --- INSTANT SWITCH (Sun -> Moon) --- */
+    49.5% { opacity: 0; left: 110%; } /* Hide */
+    49.6% { left: -120px; background-color: #eee; background-image: radial-gradient(circle closest-side, #eee, #eee); } /* Teleport & Color Change */
+    50% { opacity: 1; left: -120px; top: 70%; } /* Reveal Moon at Horizon */
+    
+    /* --- MOON PHASE (50% - 100%) --- */
+    75% { 
+        left: 50%; 
+        top: 5%; /* Peak High */
+    }
+    99% { 
+        left: 110%; 
+        top: 70%; /* Horizon */
+        background-color: #eee;
+        opacity: 1;
+    }
+    
+    /* --- INSTANT SWITCH (Moon -> Sun) --- */
+    99.5% { opacity: 0; left: 110%; } /* Hide */
+    99.6% { left: -120px; background-color: #fff000; background-image: radial-gradient(circle closest-side, #fff000, #fff000); } /* Teleport & Color Change */
+    100% { opacity: 1; left: -120px; top: 70%; } /* Reveal Sun at Horizon */
+}
+
+/* 3. CLOUDS LAYER (::after) - SVG */
+#wrapper::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.8;
+    
+    /* SVG Block Clouds */
+    background-image: url("data:image/svg+xml,%3Csvg width='300' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='40' y='40' width='100' height='30' fill='white' fill-opacity='0.6'/%3E%3Crect x='20' y='20' width='60' height='30' fill='white' fill-opacity='0.6'/%3E%3Crect x='100' y='60' width='60' height='30' fill='white' fill-opacity='0.6'/%3E%3C/svg%3E");
+    background-size: 400px 200px;
+    background-repeat: repeat;
+    
+    animation: cloud-scroll 60s linear infinite;
+}
+
+@keyframes cloud-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* --- SCROLLBAR (Minecraft Style) --- */
+#wrapper ::-webkit-scrollbar {
+    width: 20px;
+    background: #000;
+}
+
+#wrapper ::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-left: 2px solid #555;
+}
+
+#wrapper ::-webkit-scrollbar-thumb {
+    background: #808080;
+    border: 2px solid #fff;
+    border-right-color: #555;
+    border-bottom-color: #555;
+}
+
+/* --- TEXT & HEADERS --- */
+#wrapper h1, #wrapper h2, #wrapper h3 {
+    font-family: 'VT323', monospace !important;
+    text-transform: uppercase;
+    color: #3f3f3f !important;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 0 #fff;
+    text-align: center;
+}
+
+/* --- HEADER (Floating Island Style) --- */
+#wrapper .bee-header {
+    text-align: center;
+    padding: 80px 20px 40px;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+#wrapper .title-block {
+    display: inline-block;
+    padding: 20px 50px;
+    /* No bg, just massive text */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    transform: none;
+}
+
+/* 3D LOGO TEXT */
+#wrapper h1 {
+    font-size: 7em;
+    color: #ffc800 !important; /* Gold */
+    text-shadow: 
+        0px 4px 0 #d9a300,
+        0px 8px 0 #8a6600,
+        0px 12px 0 #000,
+        4px 12px 0 #000,
+        -4px 12px 0 #000,
+        8px 8px 0 rgba(0,0,0,0.2) !important;
+    letter-spacing: 2px;
+    transform: rotate(-3deg);
+    animation: logo-float 4s ease-in-out infinite;
+}
+
+@keyframes logo-float {
+    0%, 100% { transform: rotate(-3deg) translateY(0); }
+    50% { transform: rotate(-3deg) translateY(-10px); }
+}
+
+#wrapper .tagline {
+    font-size: 2em;
+    color: #fff !important;
+    text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000; /* Outline */
+    margin-top: 15px;
+    display: inline-block;
+    background: rgba(0,0,0,0.5);
+    padding: 5px 15px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* --- CONTENT CONTAINER --- */
+#wrapper .content-container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- BLOCKS (Minecraft Dirt/Grass Style) --- */
+#wrapper .block {
+    /* Base Dirt Brown */
+    background-color: #5c3c28 !important;
+    
+    /* Pixelated Dirt Texture (Base64 Noise) */
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAIklEQVQIW2NkQAKrVq36zwjjgzhQwWgQXyBMgnCfPXuWEQUA9WMMWzt6J94AAAAASUVORK5CYII=') !important;
+    background-size: 8px 8px !important;
+    background-repeat: repeat;
+    
+    /* Grass Top */
+    border-top: 20px solid #59a338;
+    
+    /* 3D Sides */
+    border-left: 6px solid rgba(0,0,0,0.2);
+    border-right: 6px solid rgba(0,0,0,0.4);
+    border-bottom: 6px solid rgba(0,0,0,0.4);
+    
+    padding: 30px 25px 25px;
+    margin-bottom: 50px;
+    position: relative;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    animation: none;
+}
+
+/* Grass Overhang (Pixelated Drip) */
+#wrapper .block::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    /* Drip pattern */
+    background: repeating-linear-gradient(
+        90deg,
+        #59a338 0,
+        #59a338 10px,
+        transparent 10px,
+        transparent 20px
+    );
+}
+
+/* Inner inset area for text (Inventory Style) */
+#wrapper .block p, 
+#wrapper .feature-list,
+#wrapper .control-grid {
+    background: #c6c6c6; /* Minecraft UI Grey */
+    color: #333 !important;
+    padding: 20px;
+    border: 4px solid #fff;
+    border-top-color: #373737;
+    border-left-color: #373737;
+    margin-top: 15px;
+    text-shadow: none;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+#wrapper .block h2 {
+    color: #fff !important;
+    text-shadow: 2px 2px 0 #000;
+    margin: 0;
+    font-size: 2.5em;
+    border-bottom: 2px dashed rgba(255,255,255,0.3);
+    padding-bottom: 10px;
+}
+
+/* --- CONTROLS (Hotbar Style) --- */
+#wrapper .control-grid {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    background: #c6c6c6;
+    padding: 10px;
+    border: 3px solid #555;
+    display: inline-flex; /* Shrink to fit */
+    width: 100%;
+    overflow-x: auto;
+}
+
+#wrapper .control-item {
+    background: #8b8b8b;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-top: 3px solid #373737;
+    border-left: 3px solid #373737;
+    border-right: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+    transition: all 0.1s;
+    position: relative;
+}
+
+#wrapper .control-item:hover {
+    background: #a0a0a0;
+}
+
+#wrapper .key {
+    background: transparent !important;
+    border: none;
+    color: #fff !important;
+    font-size: 2em;
+    text-shadow: 2px 2px 0 #000;
+    box-shadow: none;
+    padding: 0;
+}
+
+#wrapper .action {
+    position: absolute;
+    bottom: -35px;
+    font-size: 1em;
+    color: #000 !important;
+    text-shadow: none !important;
+    background: #fff;
+    padding: 2px 6px;
+    border: 2px solid #000;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+#wrapper .control-item:hover .action {
+    opacity: 1;
+}
+
+/* --- FEATURES --- */
+#wrapper .feature-list li {
+    background: transparent !important;
+    border: none;
+    color: #333 !important;
+    text-shadow: none;
+    border-bottom: 2px dashed #999;
+    padding: 15px 0;
+    text-align: center;
+}
+
+#wrapper .feature-list li:last-child {
+    border-bottom: none;
+}
+
+/* --- SCREENSHOTS (Item Frame Style) --- */
+#wrapper .screenshot-frame {
+    background: #8b8b8b; /* Backing */
+    padding: 0;
+    border-top: 4px solid #373737;
+    border-left: 4px solid #373737;
+    border-right: 4px solid #fff;
+    border-bottom: 4px solid #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    width: 48%; /* 2 per row */
+    min-width: 300px;
+    transition: all 0.2s;
+    position: relative;
+}
+
+/* Hover Selection Effect (White Outline) */
+#wrapper .screenshot-frame:hover {
+    transform: scale(1.05);
+    z-index: 10;
+    outline: 6px solid #fff; /* Selection Box */
+    box-shadow: 0 0 0 6px #000; /* Outline of Outline */
+}
+
+#wrapper .frame-label {
+    background: rgba(0,0,0,0.7);
+    color: #ffc800 !important;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 15px;
+    border: 2px solid #fff;
+    font-size: 1.2em;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+#wrapper .screenshot-frame:hover .frame-label {
+    opacity: 1;
+}
+
+/* --- BUTTONS (Big Green Play Button) --- */
+#game_drop .start_game_btn,
+#wrapper .start_game_btn,
+#wrapper button {
+    background-color: #3ba345 !important; /* Minecraft Green */
+    color: #fff !important;
+    font-size: 2.5em !important;
+    text-transform: uppercase;
+    
+    /* Voxel 3D Border */
+    border-top: 4px solid #82e88a !important; /* Highlight */
+    border-left: 4px solid #82e88a !important;
+    border-right: 4px solid #1c5222 !important; /* Shadow */
+    border-bottom: 4px solid #1c5222 !important;
+    
+    box-shadow: 0 6px 0 #123616, 0 15px 20px rgba(0,0,0,0.4) !important;
+    
+    border-radius: 0 !important;
+    padding: 15px 50px !important;
+    text-shadow: 2px 2px 0 #123616 !important;
+    transition: all 0.1s;
+    margin: 20px auto;
+    display: block;
+}
+
+#wrapper .start_game_btn:hover,
+#wrapper button:hover {
+    background-color: #4cd159 !important;
+    transform: translateY(2px);
+    box-shadow: 0 4px 0 #123616, 0 10px 15px rgba(0,0,0,0.4) !important;
+}
+
+#wrapper .start_game_btn:active,
+#wrapper button:active {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 #123616, inset 0 4px 10px rgba(0,0,0,0.5) !important;
+    border-top: 4px solid #1c5222 !important; /* Invert lighting */
+    border-left: 4px solid #1c5222 !important;
+    border-bottom: 4px solid #82e88a !important;
+    border-right: 4px solid #82e88a !important;
+}
+
+/* --- CREDITS --- */
+#wrapper .credits-block {
+    background: #000 !important;
+    border: 4px solid #3f3f3f;
+    color: #aaa !important;
+}
+
+#wrapper .credits-block p, 
+#wrapper .credits-block h3 {
+    background: transparent !important; /* Remove inset style for footer */
+    border: none;
+    color: #fff !important;
+    text-shadow: none;
+    text-align: center;
+}
+
+/* --- GAME FRAME --- */
+#wrapper .game_frame {
+    border: 10px solid #1a1a1a !important; /* Obsidian Border */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6) !important;
+}
+
+/* --- BRUTE FORCE TEXT OVERRIDE --- */
+#wrapper * {
+    font-family: 'VT323', monospace !important;
+}
+
+#wrapper a {
+    color: #ffc800 !important;
+    text-decoration: none;
+    text-shadow: 2px 2px 0 #000;
+}
+
+#wrapper a:hover {
+    text-decoration: underline;
+    color: #fff !important;
+}

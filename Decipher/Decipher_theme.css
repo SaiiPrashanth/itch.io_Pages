@@ -1,0 +1,83 @@
+/* SUPREME TERMINAL THEME - GUIDELINE COMPLIANT */
+
+#wrapper {
+    font-family: 'Courier New', Courier, monospace !important;
+    background-color: #000 !important;
+    color: #0f0 !important;
+    line-height: 1.6;
+    
+    /* SVG Matrix Pattern Background with Animation */
+    background-image: 
+        url("data:image/svg+xml,%3Csvg width='200' height='400' viewBox='0 0 200 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cstyle%3E.t%7Bfont:12px monospace;fill:%230f0;opacity:0.2%7D%3C/style%3E%3Ctext x='10' y='20' class='t'%3E10101%3C/text%3E%3Ctext x='50' y='140' class='t'%3E01101%3C/text%3E%3Ctext x='90' y='10' class='t'%3E11011%3C/text%3E%3Ctext x='130' y='250' class='t'%3E00101%3C/text%3E%3Ctext x='170' y='30' class='t'%3E10110%3C/text%3E%3Ctext x='30' y='380' class='t'%3E01011%3C/text%3E%3Ctext x='70' y='100' class='t'%3E10100%3C/text%3E%3Ctext x='110' y='270' class='t'%3E11101%3C/text%3E%3Ctext x='150' y='90' class='t'%3E01010%3C/text%3E%3Ctext x='190' y='160' class='t'%3E10011%3C/text%3E%3Ctext x='10' y='340' class='t'%3E01101%3C/text%3E%3Ctext x='50' y='160' class='t'%3E10101%3C/text%3E%3Ctext x='90' y='330' class='t'%3E00110%3C/text%3E%3Ctext x='130' y='170' class='t'%3E11011%3C/text%3E%3Ctext x='170' y='350' class='t'%3E01010%3C/text%3E%3C/svg%3E"),
+        radial-gradient(circle, #001100 1px, transparent 1px) !important;
+    background-size: 200px 400px, 30px 30px !important;
+    background-attachment: fixed !important;
+    animation: matrix-scroll 1s linear infinite !important;
+}
+
+@keyframes matrix-scroll {
+    from { background-position: 0 0, 0 0; }
+    to { background-position: 0 400px, 0 0; }
+}
+
+/* Force Transparency */
+#wrapper .inner_column,
+#wrapper .formatted_description {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    max-width: 1100px !important;
+}
+
+/* --- STYLING THE OFFICIAL TITLE (Guideline Compliant) --- */
+#wrapper h1.game_title,
+#wrapper .game_title,
+#wrapper .header.game_header h1,
+#wrapper h1 {
+    display: block !important;
+    visibility: visible !important;
+    text-align: center !important;
+    font-family: 'Courier New', Courier, monospace !important;
+    color: #0f0 !important;
+    background: #000 !important;
+    border: 2px solid #0f0 !important;
+    padding: 15px 30px !important;
+    margin: 40px auto !important;
+    width: fit-content !important;
+    max-width: 90% !important;
+    letter-spacing: 5px !important;
+    text-transform: uppercase !important;
+    box-shadow: 0 0 20px #0f0 !important;
+    position: relative !important;
+}
+
+/* Add the decorative terminal markers to the official title */
+#wrapper h1::before { content: "> " !important; }
+#wrapper h1::after { content: " [COMING SOON]" !important; }
+
+/* Typography Overrides */
+#wrapper h2, #wrapper h3 {
+    color: #0f0 !important;
+    text-transform: uppercase !important;
+    font-weight: bold !important;
+    letter-spacing: 2px;
+}
+
+#wrapper p, #wrapper li {
+    font-family: 'Courier New', monospace !important;
+    color: #0f0 !important;
+}
+
+/* Run Game Button */
+.start_game_btn {
+    background: #000 !important;
+    border: 3px solid #0f0 !important;
+    color: #0f0 !important;
+    font-family: 'Courier New', monospace !important;
+    font-size: 24px !important;
+    font-weight: bold !important;
+    border-radius: 0 !important;
+    box-shadow: 0 0 20px #0f0 !important;
+}
+
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
