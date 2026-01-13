@@ -8,7 +8,6 @@
     color: #ffffff !important;
     font-family: 'Anonymous Pro', monospace !important;
     
-    /* Global Space Animation */
     background-image: 
         radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
         radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
@@ -19,6 +18,9 @@
     background-size: 200px 200px, 300px 300px, 40px 40px, 40px 40px, 100% 100% !important;
     background-attachment: fixed !important;
     animation: space-drift 60s linear infinite !important;
+    min-height: 100vh;
+    position: relative;
+    z-index: 0;
 }
 
 @keyframes space-drift {
@@ -36,20 +38,89 @@
     box-shadow: none !important;
 }
 
-/* Run Game Button Override */
-.start_game_btn {
+/* --- VECTOR STYLE GAME FRAME --- */
+#wrapper .game_frame {
+    box-sizing: border-box !important;
+    max-width: 100% !important;
     background: #000 !important;
     border: 2px solid #fff !important;
-    color: #fff !important;
-    font-family: 'Syncopate', sans-serif !important;
-    font-weight: bold !important;
-    text-transform: uppercase !important;
-    border-radius: 0 !important;
-    padding: 20px 40px !important;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2) !important;
+    margin: 40px auto !important;
+    display: block !important;
 }
 
+/* --- HUD STYLE PLAY BUTTON --- */
+#game_drop .start_game_btn,
+.game_holder .start_game_btn,
+.game_frame .start_game_btn,
+.game_frame .start_btn,
+.iframe_placeholder .start_game_btn,
+.iframe_placeholder button,
+.start_game_btn,
+.play_button,
+button.start_game {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #fff !important;
+    
+    font-family: 'Syncopate', sans-serif !important;
+    font-weight: bold !important;
+    font-size: 1.2em !important;
+    text-transform: uppercase !important;
+    letter-spacing: 4px !important;
+    
+    border: 2px solid #fff !important;
+    border-radius: 0 !important;
+    padding: 15px 40px !important;
+    
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.1) !important;
+    
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    z-index: 9999 !important;
+    cursor: pointer !important;
+    margin: 30px auto !important;
+    
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1) !important;
+    overflow: hidden !important;
+}
+
+/* Scanline effect inside button */
+#game_drop .start_game_btn::after,
+.start_game_btn::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255,255,255,0.1) 50%, transparent 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+}
+
+/* Hover: HUD Activation */
+#game_drop .start_game_btn:hover,
 .start_game_btn:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    transform: scale(1.05) !important;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.2) !important;
+    text-shadow: 0 0 10px #fff !important;
+}
+
+/* Active: System Pulse */
+#game_drop .start_game_btn:active,
+.start_game_btn:active {
+    transform: scale(0.95) !important;
     background: #fff !important;
     color: #000 !important;
+}
+
+.start_game_btn::before {
+    content: "▲ " !important;
+    margin-right: 15px;
+    font-size: 0.8em;
+    animation: blink 1s step-end infinite;
 }

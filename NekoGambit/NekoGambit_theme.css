@@ -1,19 +1,17 @@
-/* FONT IMPORTS */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Philosopher:ital,wght@0,400;0,700;1,400&display=swap');
 
-/* SCOPED STYLES for #wrapper */
-
 #wrapper {
-    --gold: #d4af37;
+    --gold: #8b6d1d;
+    --dark-gold: #5d470a;
+    --lapis: #264e86;
     --onyx: #1a1a1a;
     --sand: #c2b280;
-    --ancient-text: #3e2723; /* Dark brown for maximum visibility */
+    --ancient-text: #3e2723;
     
     font-family: 'Philosopher', sans-serif !important;
     background-color: var(--sand) !important;
     color: var(--onyx) !important;
     
-    /* SANDSTORM BACKGROUND */
     background-image: 
         radial-gradient(circle, transparent 40%, rgba(0,0,0,0.4) 100%),
         url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E"),
@@ -28,14 +26,17 @@
     to { background-position: center center, 512px -256px, center center; }
 }
 
-/* Force Transparency on Itch Containers */
-#wrapper .inner_column,
-#wrapper .formatted_description {
+#wrapper #inner_column, 
+#wrapper .inner_column, 
+#wrapper .formatted_description,
+#wrapper .game_info_panel_widget {
     background: transparent !important;
     border: none !important;
+    box-shadow: none !important;
 }
 
-/* --- HEADERS --- */
+.game_title { display: none !important; }
+
 #wrapper h1, #wrapper h2, #wrapper h3 {
     font-family: 'Cinzel Decorative', cursive !important;
     text-transform: uppercase !important;
@@ -47,33 +48,120 @@
 
 #wrapper h1 {
     font-size: 4em !important;
-    color: #1a1a1a !important; /* Dark title */
+    color: #1a1a1a !important;
+    text-shadow: 2px 2px 0 var(--gold);
 }
 
 #wrapper h2, #wrapper h3 {
-    color: #264e86 !important; /* Lapis Blue for subheaders */
+    color: var(--lapis) !important;
+    border-bottom: 3px double var(--gold);
+    display: inline-block;
+    padding-bottom: 10px;
 }
 
-#wrapper p {
+#wrapper .feature-card strong, 
+#wrapper .feature-card b, 
+#wrapper .lore-panel strong {
+    font-family: 'Cinzel Decorative', cursive !important;
+    color: var(--onyx) !important;
+    display: block !important;
+    margin-top: 10px !important;
+    font-size: 1.3em !important;
+    font-weight: 900 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+#wrapper p, #wrapper li, .feature-card p {
     color: var(--ancient-text) !important;
     font-family: 'Philosopher', sans-serif !important;
-    font-size: 1.2em !important;
+    font-size: 1.3em !important;
     line-height: 1.8 !important;
 }
 
-/* Run Game Button Override */
-.start_game_btn {
-    background: radial-gradient(circle at 30% 30%, #4facfe 0%, #00f2fe 100%) !important;
-    color: #fff !important;
-    font-family: 'Cinzel Decorative', cursive !important;
-    font-weight: 700 !important;
-    border: 4px solid var(--gold) !important;
-    border-radius: 50px !important;
-    padding: 15px 50px !important;
-    box-shadow: 0 10px 0 #b8860b, 0 15px 20px rgba(0,0,0,0.4) !important;
-    text-transform: uppercase !important;
+#wrapper .game_frame {
+    box-sizing: border-box !important;
+    max-width: 1000px !important;
+    width: 100% !important;
+    border: 8px solid var(--gold) !important;
+    box-shadow: inset 0 0 0 4px var(--lapis), 0 20px 40px rgba(0,0,0,0.5), 0 0 0 2px var(--dark-gold) !important;
+    border-radius: 4px !important;
+    margin: 40px auto !important;
+    background: #000 !important;
+    display: block;
 }
 
+#wrapper .game_frame .iframe_placeholder {
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+
+.iframe_placeholder, .game_holder {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+/* --- STONE TABLET PLAY BUTTON --- */
+#game_drop .start_game_btn,
+.game_holder .start_game_btn,
+.game_frame .start_game_btn,
+.game_frame .start_btn,
+.iframe_placeholder .start_game_btn,
+.iframe_placeholder button,
+.start_game_btn,
+.play_button,
+button.start_game {
+    background: #e6c288 !important; /* Sandstone */
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E") !important;
+    
+    color: #3e2723 !important; /* Dark Brown Text */
+    
+    font-family: 'Cinzel Decorative', cursive !important;
+    font-weight: 900 !important;
+    font-size: 1.8em !important;
+    text-transform: uppercase !important;
+    text-shadow: 1px 1px 0 rgba(255,255,255,0.4) !important; /* Engraved look */
+    
+    border: 4px solid #8b6d1d !important;
+    border-radius: 4px !important;
+    padding: 20px 60px !important;
+    
+    box-shadow: 
+        0 6px 0 #5d470a,
+        0 15px 20px rgba(0,0,0,0.4) !important;
+        
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+    z-index: 9999 !important;
+    cursor: pointer !important;
+    margin: 0 auto !important;
+    transition: transform 0.1s ease !important;
+}
+
+/* Hover */
+#game_drop .start_game_btn:hover,
+.start_game_btn:hover {
+    transform: translateY(-2px) !important;
+    background-color: #f0d5a8 !important; /* Lighter Sandstone */
+    box-shadow: 0 8px 0 #5d470a, 0 20px 30px rgba(0,0,0,0.4) !important;
+}
+
+/* Active */
+#game_drop .start_game_btn:active,
+.start_game_btn:active {
+    transform: translateY(4px) !important;
+    box-shadow: 0 2px 0 #5d470a !important;
+}
+
+/* Icon */
+#game_drop .start_game_btn::before,
 .start_game_btn::before {
-    content: "𓀀 " !important;
+    content: "𓂀 " !important;
+    margin-right: 15px !important;
+    font-size: 1.2em !important;
+    color: #8b6d1d !important;
 }

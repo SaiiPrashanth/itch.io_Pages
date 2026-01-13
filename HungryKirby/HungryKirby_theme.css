@@ -16,13 +16,16 @@
     width: 16px;
     background: #2d1b2e;
 }
+
 ::-webkit-scrollbar-track {
     background: #2d1b2e;
 }
+
 ::-webkit-scrollbar-thumb {
     background: var(--retro-pink);
     border: 4px solid #2d1b2e;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: var(--retro-white);
 }
@@ -43,7 +46,10 @@
     50% { transform: translateY(-10px); }
 }
 
-/* SCOPED STYLES START HERE */
+@keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
 
 #wrapper {
     background-color: #62c1e5;
@@ -59,9 +65,29 @@
     font-size: 20px;
     color: var(--retro-text);
     image-rendering: pixelated;
+    
+    position: relative;
+    z-index: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
+/* --- CRT SCANLINE OVERLAY --- */
 #wrapper::before {
+    content: " ";
+    display: block;
+    position: fixed; /* Must be fixed to stay on screen */
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.02), rgba(0,0,255,0.06));
+    background-size: 100% 4px, 3px 100%;
+    z-index: 9999; /* Top of everything */
+    pointer-events: none;
+}
+
+#wrapper::after {
     content: " ";
     display: block;
     position: fixed;
@@ -69,10 +95,17 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
-    background-size: 100% 4px;
-    z-index: 999;
+    background: rgba(18, 16, 16, 0.1);
+    opacity: 0;
+    z-index: 9999;
     pointer-events: none;
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: 0.02; }
+    50% { opacity: 0.05; }
+    100% { opacity: 0.02; }
 }
 
 #wrapper #inner_column {
@@ -113,13 +146,13 @@
     color: var(--retro-dark-pink);
     line-height: 1.5;
     text-transform: uppercase;
+    text-shadow: 2px 2px 0 rgba(0, 255, 255, 0.3), -2px -2px 0 rgba(255, 0, 0, 0.3); /* Chromatic aberration */
 }
 
 #wrapper h1 { 
     font-size: 1.8em; 
     margin-bottom: 20px; 
     text-align: center; 
-    text-shadow: 4px 4px 0 #fff, 6px 6px 0 var(--border-color);
 }
 
 #wrapper h2 { 
@@ -132,7 +165,6 @@
     color: var(--retro-text);
     padding: 10px; 
     box-shadow: 4px 4px 0 var(--border-color); 
-    text-shadow: none;
 }
 
 #wrapper h3 { font-size: 1em; }
@@ -153,24 +185,9 @@
     margin: 0 auto;
 }
 
-#wrapper .custom-kirby-wrapper::after {
-    content: "";
-    position: absolute;
-    top: -4px; left: -4px; right: -4px; bottom: -4px;
-    box-shadow: inset 0 0 0 4px var(--retro-white);
-    pointer-events: none;
-    z-index: 1;
-}
-
 #wrapper .cloud-divider {
     height: 20px;
-    background: repeating-linear-gradient(
-        45deg,
-        var(--retro-blue),
-        var(--retro-blue) 10px,
-        var(--retro-white) 10px,
-        var(--retro-white) 20px
-    );
+    background: repeating-linear-gradient(45deg, var(--retro-blue), var(--retro-blue) 10px, var(--retro-white) 10px, var(--retro-white) 20px);
     border: 2px solid var(--border-color);
     margin: 40px 0;
     box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
@@ -270,36 +287,6 @@
     box-shadow: none;
 }
 
-/* STANDARD BUTTONS (Buy, Download) */
-#wrapper .upload_list_widget .upload_btn, 
-#wrapper .buy_btn {
-    background: var(--retro-dark-pink) !important;
-    border-radius: 0 !important;
-    color: white !important;
-    font-family: 'Press Start 2P', cursive !important;
-    font-size: 0.9em !important;
-    padding: 20px 20px !important;
-    border: 4px solid var(--border-color) !important;
-    box-shadow: inset -4px -4px 0 rgba(0,0,0,0.2), 4px 4px 0 var(--border-color) !important;
-    transition: all 0.1s steps(1) !important;
-    text-shadow: 2px 2px 0 var(--border-color) !important;
-    text-transform: uppercase;
-}
-
-#wrapper .upload_list_widget .upload_btn:hover, 
-#wrapper .buy_btn:hover {
-    background: var(--retro-pink) !important;
-    transform: translate(2px, 2px);
-    box-shadow: inset -4px -4px 0 rgba(0,0,0,0.2), 2px 2px 0 var(--border-color) !important;
-}
-
-#wrapper .upload_list_widget .upload_btn:active, 
-#wrapper .buy_btn:active {
-    transform: translate(4px, 4px);
-    box-shadow: inset 4px 4px 0 rgba(0,0,0,0.2), 0 0 0 var(--border-color) !important;
-}
-
-/* --- THE EMBED BOX (Game Frame) --- */
 #wrapper .game_frame,
 #wrapper .iframe_placeholder,
 #game_drop {
@@ -309,8 +296,6 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.4) !important;
 }
 
-/* --- THE WARP STAR BUTTON --- */
-/* (Prefixed with ID to ensure it works within the scope) */
 #game_drop .start_game_btn,
 .game_holder .start_game_btn,
 .game_frame .start_game_btn,
@@ -320,35 +305,27 @@
 .start_game_btn,
 .play_button,
 button.start_game {
-    /* Completely Transparent Box */
     background: transparent !important;
     background-color: transparent !important;
     background-image: none !important;
     border: none !important;
     box-shadow: none !important;
-    
-    /* Text Styling */
     color: var(--retro-warp-star) !important;
     text-shadow: 3px 3px 0 var(--retro-dark-pink) !important;
     font-family: 'Press Start 2P', cursive !important;
     font-size: 1.5em !important;
     text-transform: uppercase !important;
-    
-    /* Layout */
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     width: auto !important;
     height: auto !important;
     padding: 10px !important;
-    
     position: relative !important;
     z-index: 9999 !important;
-    
     animation: float-star 2s ease-in-out infinite !important;
 }
 
-/* Add the Star Icon Character */
 #game_drop .start_game_btn::before,
 .game_holder .start_game_btn::before,
 .game_frame .start_btn::before,
@@ -360,7 +337,6 @@ button.start_game {
     display: inline-block !important;
 }
 
-/* Hover State - Scale up */
 #game_drop .start_game_btn:hover,
 .start_game_btn:hover {
     transform: scale(1.1) !important;

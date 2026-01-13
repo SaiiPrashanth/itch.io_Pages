@@ -9,9 +9,13 @@
         <p class="mission-status" style="letter-spacing: 2px; font-weight: bold;">STATUS: <span style="animation: blink 1s step-end infinite;">READY TO LAUNCH</span></p>
     </div>
 
+    <div class="gameplay-gif" style="margin-bottom: 40px; text-align: center; border: 2px solid #fff; box-shadow: 0 0 15px rgba(255,255,255,0.2);">
+        <img src="https://raw.githubusercontent.com/SaiiPrashanth/Astron/main/Screenshots/Astron_3.gif" alt="Astron Gameplay" style="max-width: 100%; display: block;">
+    </div>
+
     <div class="hud-panel intro-panel" style="background: rgba(0,0,0,0.8); border: 2px solid #fff; border-left: 8px solid #fff; padding: 40px; margin-bottom: 40px; position: relative;">
         <p style="margin: 0; font-size: 1.2em; line-height: 1.8;">
-            Survive the geometric chaos. <strong>Astron</strong> is a minimalist asteroid shooter where precision is key and hesitation is fatal.
+            <strong>Astron</strong> is a classic arcade-style space shooter built with vanilla <strong>JavaScript</strong> and <strong>HTML5 Canvas</strong>. Control a spaceship in a void filled with dangers. Thrust through space, rotate to aim, and survive as long as you can.
         </p>
     </div>
 
@@ -19,16 +23,16 @@
         <h2 style="font-family: 'Syncopate', sans-serif; text-transform: uppercase; margin-top: 0; border-bottom: 1px solid #fff; padding-bottom: 10px;">⌨️ Flight Controls</h2>
         <div class="controls-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin-top: 20px;">
             <div style="background: rgba(255,255,255,0.05); padding: 20px; border: 1px solid #333; text-align: center;">
-                <div style="font-family: 'Syncopate', sans-serif; font-weight: bold; margin-bottom: 10px;">WASD</div>
-                <div style="font-size: 0.8em; opacity: 0.8;">THRUST / ROTATE</div>
+                <div style="font-family: 'Syncopate', sans-serif; font-weight: bold; margin-bottom: 10px;">W</div>
+                <div style="font-size: 0.8em; opacity: 0.8;">THRUST FORWARD</div>
+            </div>
+            <div style="background: rgba(255,255,255,0.05); padding: 20px; border: 1px solid #333; text-align: center;">
+                <div style="font-family: 'Syncopate', sans-serif; font-weight: bold; margin-bottom: 10px;">A / D</div>
+                <div style="font-size: 0.8em; opacity: 0.8;">ROTATE LEFT / RIGHT</div>
             </div>
             <div style="background: rgba(255,255,255,0.05); padding: 20px; border: 1px solid #333; text-align: center;">
                 <div style="font-family: 'Syncopate', sans-serif; font-weight: bold; margin-bottom: 10px;">SPACE</div>
                 <div style="font-size: 0.8em; opacity: 0.8;">FIRE</div>
-            </div>
-            <div style="background: rgba(255,255,255,0.05); padding: 20px; border: 1px solid #333; text-align: center;">
-                <div style="font-family: 'Syncopate', sans-serif; font-weight: bold; margin-bottom: 10px;">SHIFT</div>
-                <div style="font-size: 0.8em; opacity: 0.8;">BOOST</div>
             </div>
         </div>
     </div>
@@ -36,10 +40,9 @@
     <div class="hud-panel" style="background: rgba(0,0,0,0.8); border: 2px solid #fff; padding: 40px; margin-bottom: 40px; position: relative;">
         <h2 style="font-family: 'Syncopate', sans-serif; text-transform: uppercase; margin-top: 0;">System Specs</h2>
         <ul style="list-style: none; padding: 0; margin-top: 20px;">
-            <li style="padding: 15px 0; border-bottom: 1px solid #333;">► <strong>Vector Graphics:</strong> Clean, high-contrast geometrical art style.</li>
-            <li style="padding: 15px 0; border-bottom: 1px solid #333;">► <strong>Physics-Based:</strong> Realistic inertia and collisions.</li>
-            <li style="padding: 15px 0; border-bottom: 1px solid #333;">► <strong>Endless Mode:</strong> Infinite waves of increasingly complex shapes.</li>
-            <li style="padding: 15px 0;">► <strong>Neon FX:</strong> Dynamic lighting and particle explosions.</li>
+            <li style="padding: 15px 0; border-bottom: 1px solid #333;">► <strong>Physics-based Movement:</strong> Momentum-based thrust and friction mechanics.</li>
+            <li style="padding: 15px 0; border-bottom: 1px solid #333;">► <strong>Screen Wrapping:</strong> Fly off one side of the screen and appear on the other.</li>
+            <li style="padding: 15px 0;">► <strong>Retro Graphics:</strong> Simple vector-style rendering using the HTML5 Canvas API.</li>
         </ul>
     </div>
 

@@ -1,368 +1,105 @@
-/* FONT IMPORTS */
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;700;800&family=Fredoka+One&display=swap');
 
-/* SCOPED STYLES for #wrapper */
-
 #wrapper {
-    /* Tropical Palette */
     --ocean-blue: #4ecdc4;
     --deep-blue: #2980b9;
+    --sky-top: #87CEEB;
+    --sky-bottom: #add8e6;
+    --wood-main: #a1887f;
+    --wood-shadow: #5d4037;
+    --outline: #000000;
     --coral: #ff6b6b;
     --sand: #f7fff7;
-    --sun-yellow: #ffe66d;
     --text-dark: #2c3e50;
     
     font-family: 'Baloo 2', cursive !important;
-    font-size: 18px !important; /* Base Size Increase */
+    font-size: 20px !important;
     color: var(--text-dark) !important;
-    background-color: var(--deep-blue) !important;
+    background-color: var(--sky-bottom) !important;
     
-    /* ANIMATED OCEAN BACKGROUND - PARALLAX PAPER-CUTOUT WAVES */
     background-image: 
-        /* Layer 1: Front Wave (Light Teal) */
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' fill-opacity='0.15' d='M0,234 C360,300 1080,170 1440,234 L1440,330 L0,330 Z'/%3E%3Cpath fill='%234ecdc4' fill-opacity='0.9' d='M0,224 C360,290 1080,160 1440,224 L1440,320 L0,320 Z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath fill='%234fc3f7' fill-opacity='0.9' d='M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,120 L0,120 Z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath fill='%234facfe' fill-opacity='1' d='M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,120 L0,120 Z'/%3E%3C/svg%3E"),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath fill='%232980b9' fill-opacity='1' d='M0,60 C150,120 350,0 600,60 C850,120 1050,0 1200,60 L1200,120 L0,120 Z'/%3E%3C/svg%3E"),
+        linear-gradient(to bottom, var(--sky-top) 0%, var(--sky-bottom) 100%) !important;
         
-        /* Layer 2: Mid Wave (Deep Blue) */
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' fill-opacity='0.15' d='M0,170 C180,210 540,130 720,170 C900,210 1260,130 1440,170 L1440,330 L0,330 Z'/%3E%3Cpath fill='%232980b9' fill-opacity='0.7' d='M0,160 C180,200 540,120 720,160 C900,200 1260,120 1440,160 L1440,320 L0,320 Z'/%3E%3C/svg%3E"),
-        
-        /* Layer 3: Back Wave (Dark Navy) */
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='black' fill-opacity='0.15' d='M0,138 C120,170 360,106 480,138 C600,170 840,106 960,138 C1080,170 1320,106 1440,138 L1440,330 L0,330 Z'/%3E%3Cpath fill='%232c3e50' fill-opacity='0.5' d='M0,128 C120,160 360,96 480,128 C600,160 840,96 960,128 C1080,160 1320,96 1440,128 L1440,320 L0,320 Z'/%3E%3C/svg%3E"),
-        
-        /* Base: Tropical Sunset Gradient */
-        linear-gradient(to bottom, #ffe66d 0%, #ff6b6b 100%) !important;
-        
-    background-size: 
-        1440px 320px,   /* Wave 1 Size */
-        1440px 350px,   /* Wave 2 Size (Tighter Overlap) */
-        1440px 380px,   /* Wave 3 Size (Tighter Overlap) */
-        100% 100% !important;
-        
-    background-position: 
-        0 bottom, 
-        0 bottom,
-        0 bottom,
-        0 0;
-        
-    background-repeat: repeat-x, repeat-x, repeat-x, no-repeat !important;
+    background-size: 1200px 160px, 1200px 200px, 1200px 240px, 100% 100% !important;
     background-attachment: fixed !important;
+    background-repeat: repeat-x, repeat-x, repeat-x, no-repeat !important;
     
-    animation: wave-parallax 30s linear infinite !important;
-    overflow-x: hidden;
-    line-height: 1.6;
+    animation: parallax-waves 30s linear infinite !important;
+    text-align: center !important;
     min-height: 100vh;
+    position: relative;
+    z-index: 0;
+    overflow-x: hidden;
 }
 
-@keyframes wave-parallax {
-    0% { 
-        background-position: 
-            0 bottom, 
-            0 bottom, 
-            0 bottom, 
-            0 0; 
-    }
-    100% { 
-        background-position: 
-            1440px bottom,  /* Front */
-            1440px bottom,  /* Mid */
-            1440px bottom,  /* Back */
-            0 0; 
-    }
+@keyframes parallax-waves {
+    from { background-position: 0 bottom, 0 bottom, 0 bottom, 0 0; }
+    /* Positive values move the pattern Left to Right */
+    to { background-position: 2400px bottom, 1200px bottom, 600px bottom, 0 0; }
 }
 
-/* --- BRUTE FORCE TEXT COLOR & FONT OVERRIDE --- */
-#wrapper #custom-boat-wrapper,
-#wrapper #custom-boat-wrapper p, 
-#wrapper #custom-boat-wrapper li, 
-#wrapper #custom-boat-wrapper span, 
-#wrapper #custom-boat-wrapper div, 
-#wrapper #custom-boat-wrapper .formatted_description {
-    color: var(--text-dark) !important;
-    font-family: 'Baloo 2', cursive !important;
-    font-size: 22px !important; /* Increased font size */
-}
-
-/* Feature item specific paragraph size (smaller than main body) */
-#wrapper #custom-boat-wrapper .feature-item p {
-    font-size: 18px !important;
-}
-
-/* Re-apply Header Fonts specifically inside our custom wrapper */
-#wrapper #custom-boat-wrapper h1, 
-#wrapper #custom-boat-wrapper h2, 
-#wrapper #custom-boat-wrapper h3, 
-#wrapper #custom-boat-wrapper h4, 
-#wrapper #custom-boat-wrapper strong, 
-#wrapper #custom-boat-wrapper b {
-    color: var(--deep-blue) !important;
-    font-family: 'Fredoka One', cursive !important;
-}
-
-@keyframes float-ui {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-}
-
-@keyframes tilt-ship {
-    0%, 100% { transform: rotate(-2deg); }
-    50% { transform: rotate(2deg); }
-}
-
-/* --- FORCE TRANSPARENCY ON ITCH CONTAINERS --- */
-#wrapper #inner_column,
-#wrapper .inner_column,
-#wrapper .formatted_description,
-#wrapper .game_info_panel_widget {
+#inner_column, .inner_column, .formatted_description, .game_info_panel_widget {
     background: transparent !important;
     background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
 }
 
-/* --- LINKS --- */
-#wrapper a {
-    color: var(--coral) !important;
-    text-decoration: none;
-    font-weight: 800;
-    font-family: 'Baloo 2', cursive !important;
-    border-bottom: 3px solid rgba(255,107,107,0.3);
-    transition: all 0.2s;
-}
-
-#wrapper a:hover {
-    color: #fff !important;
-    background: var(--coral);
-    border-bottom: 3px solid var(--coral);
-    border-radius: 5px;
-    padding: 0 5px;
-}
-
-/* --- HEADER --- */
-#wrapper .boat-header {
-    text-align: center;
-    margin-bottom: 60px;
-    padding: 40px 20px;
-    background: #fff !important; /* Force white bg */
-    border-radius: 0 0 50px 50px;
-    box-shadow: 0 10px 0 rgba(0,0,0,0.1);
-    position: relative;
-    overflow: hidden;
-}
+.game_title { display: none !important; }
 
 #wrapper h1 {
-    font-size: 4em;
-    color: var(--deep-blue) !important;
-    text-transform: uppercase;
-    margin: 0;
-    text-shadow: 3px 3px 0 var(--ocean-blue);
-    letter-spacing: 2px;
-    animation: tilt-ship 4s ease-in-out infinite;
+    font-family: 'Fredoka One', cursive !important;
+    font-size: 5em !important;
+    color: #fff !important;
+    text-shadow: 4px 4px 0 var(--outline) !important;
+    margin: 50px 0 10px 0 !important;
     display: inline-block;
+    animation: title-sailing 4s ease-in-out infinite !important;
+}
+
+@keyframes title-sailing {
+    /* Adjusted to feel like it is sailing Left to Right */
+    0%, 100% { transform: translate(-20px, 0) rotate(-1deg); }
+    50% { transform: translate(20px, -15px) rotate(2deg); }
 }
 
 #wrapper .tagline {
-    font-size: 1.5em;
-    color: var(--coral) !important;
-    font-weight: 700;
-    margin-top: 10px;
     font-family: 'Baloo 2', cursive !important;
-}
-
-/* --- CONTENT CONTAINER --- */
-#wrapper .content-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* --- CARDS (Floating UI) --- */
-#wrapper .card {
-    background: #fff !important; /* Force white bg */
-    border-radius: 30px;
-    padding: 40px;
-    margin-bottom: 40px;
-    box-shadow: 
-        0 10px 0 rgba(0,0,0,0.1),
-        0 20px 40px rgba(0,0,0,0.1);
-    border: 4px solid #fff;
-    animation: float-ui 6s ease-in-out infinite;
-    position: relative;
-    color: var(--text-dark) !important; /* Force text inside cards */
-}
-
-#wrapper .card:nth-child(even) {
-    animation-delay: 1s;
-    transform: rotate(1deg);
-}
-
-#wrapper .card:nth-child(odd) {
-    animation-delay: 0s;
-    transform: rotate(-1deg);
-}
-
-#wrapper h2 {
+    font-size: 1.5em !important;
     color: var(--deep-blue) !important;
-    font-size: 2.2em;
-    margin-top: 0;
-    margin-bottom: 25px;
-    text-align: center;
-    border-bottom: 4px dashed var(--ocean-blue);
-    padding-bottom: 15px;
-}
-
-#wrapper h3 {
-    color: var(--coral) !important;
-    font-size: 1.8em;
-    text-align: center;
-}
-
-/* --- CONTROLS --- */
-#wrapper .control-instruction {
-    text-align: center;
-    background: var(--sand) !important;
-    padding: 30px;
-    border-radius: 20px;
-    border: 3px solid var(--ocean-blue);
-}
-
-#wrapper .input-method {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-#wrapper .key {
-    background: #fff !important;
-    color: var(--deep-blue) !important;
-    font-family: 'Fredoka One', cursive !important;
-    font-size: 1.5em;
-    padding: 15px 30px;
-    border-radius: 15px;
-    box-shadow: 0 5px 0 #ddd;
-    border: 2px solid #eee;
-}
-
-#wrapper .or {
     font-weight: 800;
-    color: #aaa !important;
-    font-family: 'Fredoka One', cursive !important;
+    margin-bottom: 40px;
 }
 
-#wrapper .hint {
-    text-align: center;
-    font-style: italic;
-    color: #888 !important;
-    margin-top: 15px;
+#wrapper .content-container {
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-/* --- FEATURES GRID --- */
-#wrapper .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-}
-
-#wrapper .feature-item {
-    text-align: center;
-    padding: 20px;
-    background: var(--sand) !important;
+#wrapper .card {
+    background: #fff !important;
+    border: 4px solid var(--outline) !important;
     border-radius: 20px;
-    transition: transform 0.3s;
-    color: var(--text-dark) !important;
+    padding: 40px;
+    margin-bottom: 80px;
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.2) !important;
 }
 
-#wrapper .feature-item strong {
-    color: var(--deep-blue) !important;
-    display: block;
-    margin-bottom: 5px;
-}
-
-#wrapper .feature-item p {
-    color: var(--text-dark) !important;
-    font-size: 0.9em;
-}
-
-#wrapper .feature-item:hover {
-    transform: translateY(-5px);
-    background: #fff !important;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-#wrapper .emoji {
-    font-size: 3em;
-    display: block;
-    margin-bottom: 10px;
-}
-
-/* --- MEDIA (Polaroids) --- */
-#wrapper .media-carousel {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-bottom: 50px;
-    flex-wrap: wrap;
-}
-
-#wrapper .polaroid {
-    background: #fff !important;
-    padding: 15px 15px 40px 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    transform: rotate(-3deg);
-    transition: transform 0.3s;
-    width: 300px;
-}
-
-#wrapper .polaroid:nth-child(2) {
-    transform: rotate(3deg);
-}
-
-#wrapper .polaroid:hover {
-    transform: scale(1.05) rotate(0deg);
-    z-index: 10;
-}
-
-#wrapper .game-snap {
-    width: 100%;
-    border-radius: 5px;
-    border: 2px solid #eee;
-}
-
-#wrapper .caption {
-    font-family: 'Fredoka One', cursive !important;
-    color: #ccc !important;
-    text-align: center;
-    margin-top: 15px;
-    font-size: 1.2em;
-}
-
-/* --- CREDITS --- */
-#wrapper .credits-card {
-    text-align: center;
-    background: var(--sun-yellow) !important;
-    border: none;
-    color: var(--text-dark) !important;
-}
-
-#wrapper .credits-card h3 {
-    color: var(--text-dark) !important;
-    border-bottom-color: #fff;
-}
-
-/* --- EMBED BOX (Game Frame) --- */
-#wrapper .game_frame,
-#wrapper .iframe_placeholder,
-#game_drop {
+#wrapper .game_frame {
     box-sizing: border-box !important;
     max-width: 100% !important;
-    background: #2c3e50 !important; /* Dark Slate for contrast */
-    border: 10px solid #fff !important;
-    border-radius: 20px !important;
-    box-shadow: 0 20px 0 rgba(0,0,0,0.1) !important;
-    margin-bottom: 60px !important;
+    background-color: var(--wood-main) !important;
+    border: 6px solid var(--outline) !important;
+    border-radius: 12px !important;
+    box-shadow: inset 0 -10px 0 rgba(0,0,0,0.2), 10px 10px 0 rgba(0,0,0,0.3) !important;
+    margin: 40px auto !important;
+    display: block !important;
+    padding: 15px !important;
 }
 
-/* --- RUN GAME BUTTON (Buoy / Life Ring Style) --- */
 #game_drop .start_game_btn,
 .game_holder .start_game_btn,
 .game_frame .start_game_btn,
@@ -372,76 +109,44 @@
 .start_game_btn,
 .play_button,
 button.start_game {
-    /* Style */
-    background: var(--coral) !important;
+    background: #ff5252 !important;
+    background-color: #ff5252 !important;
     color: #fff !important;
     font-family: 'Fredoka One', cursive !important;
-    font-size: 1.8em !important;
+    font-size: 2.2em !important;
     text-transform: uppercase !important;
-    letter-spacing: 2px !important;
-    text-shadow: 2px 2px 0 rgba(0,0,0,0.1) !important;
-    
-    /* Shape */
-    border: 5px solid #fff !important;
-    border-radius: 100px !important; /* Pill shape */
-    padding: 20px 60px !important;
-    
-    /* Shadow */
-    box-shadow: 
-        0 10px 0 #c0392b, /* Darker Red 3D part */
-        0 20px 30px rgba(0,0,0,0.2) !important;
-        
+    text-shadow: 2px 2px 0 var(--outline) !important;
+    border: 4px solid var(--outline) !important;
+    border-radius: 50px !important;
+    padding: 15px 60px !important;
+    box-shadow: 6px 6px 0 var(--outline) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     position: relative !important;
     z-index: 9999 !important;
-    overflow: visible !important;
+    cursor: pointer !important;
+    margin: 30px auto !important;
     transition: all 0.1s !important;
 }
 
 #game_drop .start_game_btn:hover,
 .start_game_btn:hover {
-    transform: translateY(4px) !important;
-    box-shadow: 
-        0 6px 0 #c0392b,
-        0 10px 20px rgba(0,0,0,0.2) !important;
-    background: #ff7e7e !important;
+    background: #ff7675 !important;
+    transform: translate(-2px, -2px) !important;
+    box-shadow: 8px 8px 0 var(--outline) !important;
 }
 
 #game_drop .start_game_btn:active,
 .start_game_btn:active {
-    transform: translateY(10px) !important;
-    box-shadow: 
-        0 0 0 #c0392b,
-        inset 0 5px 10px rgba(0,0,0,0.2) !important;
+    transform: translate(2px, 2px) !important;
+    box-shadow: 2px 2px 0 var(--outline) !important;
 }
 
-/* Add Boat Icon */
-#game_drop .start_game_btn::before,
 .start_game_btn::before {
-    content: "⛵ " !important;
-    margin-right: 15px !important;
-}
-
-/* --- ITCH STANDARD BUTTONS --- */
-#wrapper .upload_list_widget .upload_btn, 
-#wrapper .buy_btn {
-    background: #fff !important;
-    color: var(--deep-blue) !important;
-    font-family: 'Fredoka One', cursive !important;
-    border-radius: 15px !important;
-    border: none !important;
-    box-shadow: 0 5px 0 #ddd !important;
-    transition: transform 0.1s !important;
-}
-
-#wrapper .upload_list_widget .upload_btn:hover, 
-#wrapper .buy_btn:hover {
-    transform: translateY(2px) !important;
-    box-shadow: 0 3px 0 #ddd !important;
-}
-
-/* RESPONSIVE */
-@media (max-width: 700px) {
-    #wrapper h1 { font-size: 2.5em; }
-    #wrapper .card { padding: 25px; transform: none !important; animation: none; }
-    #wrapper .polaroid { width: 100%; transform: none; }
+    content: "⚓ " !important;
+    margin-right: 15px;
+    font-size: 1.1em;
+    color: #fff !important;
+    text-shadow: 2px 2px 0 var(--outline) !important;
 }
