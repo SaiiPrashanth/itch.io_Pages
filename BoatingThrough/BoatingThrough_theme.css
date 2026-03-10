@@ -41,7 +41,54 @@
     to { background-position: 2400px bottom, 1200px bottom, 600px bottom, 0 0; }
 }
 
+/* --- CLOUD LAYERS --- */
+#wrapper::before {
+    content: '' !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: -600px !important;
+    width: calc(100% + 1200px) !important;
+    height: 200px !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 120'%3E%3Cg fill='white' fill-opacity='0.85'%3E%3Cellipse cx='150' cy='85' rx='130' ry='38'/%3E%3Cellipse cx='90' cy='68' rx='65' ry='45'/%3E%3Cellipse cx='200' cy='60' rx='80' ry='50'/%3E%3Cellipse cx='150' cy='52' rx='75' ry='42'/%3E%3Cellipse cx='450' cy='90' rx='100' ry='32'/%3E%3Cellipse cx='400' cy='75' rx='55' ry='40'/%3E%3Cellipse cx='490' cy='70' rx='65' ry='42'/%3E%3Cellipse cx='450' cy='60' rx='68' ry='45'/%3E%3C/g%3E%3C/svg%3E") !important;
+    background-size: 600px 120px !important;
+    background-repeat: repeat-x !important;
+    background-position: 0 top !important;
+    will-change: transform !important;
+    animation: clouds-slow 45s linear infinite !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+#wrapper::after {
+    content: '' !important;
+    position: fixed !important;
+    top: 30px !important;
+    left: -400px !important;
+    width: calc(100% + 800px) !important;
+    height: 160px !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 80'%3E%3Cg fill='white' fill-opacity='0.6'%3E%3Cellipse cx='100' cy='55' rx='85' ry='28'/%3E%3Cellipse cx='60' cy='46' rx='45' ry='32'/%3E%3Cellipse cx='130' cy='42' rx='55' ry='35'/%3E%3Cellipse cx='300' cy='58' rx='70' ry='25'/%3E%3Cellipse cx='265' cy='50' rx='40' ry='30'/%3E%3Cellipse cx='330' cy='45' rx='48' ry='32'/%3E%3C/g%3E%3C/svg%3E") !important;
+    background-size: 400px 80px !important;
+    background-repeat: repeat-x !important;
+    background-position: 0 top !important;
+    will-change: transform !important;
+    animation: clouds-fast 28s linear infinite !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+}
+
+@keyframes clouds-slow {
+    from { transform: translateX(0); }
+    to   { transform: translateX(600px); }
+}
+
+@keyframes clouds-fast {
+    from { transform: translateX(0); }
+    to   { transform: translateX(400px); }
+}
+
 #inner_column, .inner_column, .formatted_description, .game_info_panel_widget {
+    position: relative !important;
+    z-index: 2 !important;
     background: transparent !important;
     background-color: transparent !important;
     border: none !important;
