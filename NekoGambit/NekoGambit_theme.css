@@ -11,25 +11,43 @@
     font-family: 'Philosopher', sans-serif !important;
     background-color: var(--sand) !important;
     color: var(--onyx) !important;
-    
-    background-image:
-        radial-gradient(circle, transparent 40%, rgba(0,0,0,0.4) 100%),
-        url("https://cdn.jsdelivr.net/gh/SaiiPrashanth/itch.io_Pages@main/NekoGambit/smooth-sand-dunes-1024x1024.jpg") !important;
-    background-size: 100% 100%, 1024px 1024px !important;
-    background-position: center center, 0 0 !important;
-    background-attachment: scroll !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+#wrapper::before {
+    content: '' !important;
+    position: fixed !important;
+    inset: -1024px !important;
+    background-image: url("https://cdn.jsdelivr.net/gh/SaiiPrashanth/itch.io_Pages@main/NekoGambit/smooth-sand-dunes-1024x1024.jpg") !important;
+    background-size: 1024px 1024px !important;
+    background-repeat: repeat !important;
+    will-change: transform !important;
     animation: sand-drift 60s linear infinite !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+}
+
+#wrapper::after {
+    content: '' !important;
+    position: fixed !important;
+    inset: 0 !important;
+    background: radial-gradient(circle, transparent 40%, rgba(0,0,0,0.4) 100%) !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
 }
 
 @keyframes sand-drift {
-    from { background-position: center center, 0 0; }
-    to   { background-position: center center, 1024px -512px; }
+    from { transform: translate(0, 0); }
+    to   { transform: translate(1024px, -512px); }
 }
 
-#wrapper #inner_column, 
-#wrapper .inner_column, 
+#wrapper #inner_column,
+#wrapper .inner_column,
 #wrapper .formatted_description,
 #wrapper .game_info_panel_widget {
+    position: relative !important;
+    z-index: 2 !important;
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -50,6 +68,10 @@
     font-size: 4em !important;
     color: #1a1a1a !important;
     text-shadow: 2px 2px 0 var(--gold);
+}
+
+@media (max-width: 600px) {
+    #wrapper h1 { font-size: 2.2em !important; }
 }
 
 #wrapper h2, #wrapper h3 {
