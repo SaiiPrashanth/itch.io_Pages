@@ -13,12 +13,18 @@
     color: var(--onyx) !important;
     
     background-image:
-        linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.32)),
-        url("https://raw.githubusercontent.com/SaiiPrashanth/Neko_Gambit/main/Screenshots/Neko_Gambit_img_.jpg") !important;
-    background-size: cover !important;
-    background-position: center top !important;
+        radial-gradient(circle, transparent 40%, rgba(0,0,0,0.4) 100%),
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E"),
+        url("https://raw.githubusercontent.com/SaiiPrashanth/itch.io_Pages/main/NekoGambit/smooth-sand-dunes-1024x1024.jpg") !important;
+    background-size: 100% 100%, 512px 512px, cover !important;
+    background-position: center center, 0 0, center center !important;
     background-attachment: scroll !important;
-    background-repeat: no-repeat !important;
+    animation: sand-drift 60s linear infinite !important;
+}
+
+@keyframes sand-drift {
+    from { background-position: center center, 0 0, center center; }
+    to   { background-position: center center, 512px -256px, center center; }
 }
 
 #wrapper #inner_column, 
@@ -43,12 +49,12 @@
 
 #wrapper h1 {
     font-size: 4em !important;
-    color: #f5e0b0 !important;
-    text-shadow: 2px 2px 0 var(--dark-gold);
+    color: #1a1a1a !important;
+    text-shadow: 2px 2px 0 var(--gold);
 }
 
 #wrapper h2, #wrapper h3 {
-    color: var(--gold) !important;
+    color: var(--lapis) !important;
     border-bottom: 3px double var(--gold);
     display: inline-block;
     padding-bottom: 10px;
@@ -58,7 +64,7 @@
 #wrapper .feature-card b, 
 #wrapper .lore-panel strong {
     font-family: 'Cinzel Decorative', cursive !important;
-    color: #f5e0b0 !important;
+    color: var(--onyx) !important;
     display: block !important;
     margin-top: 10px !important;
     font-size: 1.3em !important;
@@ -68,7 +74,7 @@
 }
 
 #wrapper p, #wrapper li, .feature-card p {
-    color: #f0dfc0 !important;
+    color: var(--ancient-text) !important;
     font-family: 'Philosopher', sans-serif !important;
     font-size: 1.3em !important;
     line-height: 1.8 !important;
