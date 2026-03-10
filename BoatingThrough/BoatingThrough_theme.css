@@ -24,7 +24,7 @@
         linear-gradient(to bottom, var(--sky-top) 0%, var(--sky-bottom) 100%) !important;
         
     background-size: 1200px 160px, 1200px 200px, 1200px 240px, 100% 100% !important;
-    background-attachment: fixed !important;
+    background-attachment: scroll !important;
     background-repeat: repeat-x, repeat-x, repeat-x, no-repeat !important;
     
     animation: parallax-waves 30s linear infinite !important;
@@ -58,6 +58,18 @@
     margin: 50px 0 10px 0 !important;
     display: inline-block;
     animation: title-sailing 4s ease-in-out infinite !important;
+}
+
+@media (max-width: 600px) {
+    #wrapper h1 {
+        font-size: 2.4em !important;
+        animation: title-sailing-mobile 4s ease-in-out infinite !important;
+    }
+}
+
+@keyframes title-sailing-mobile {
+    0%, 100% { transform: translate(-6px, 0) rotate(-1deg); }
+    50%       { transform: translate(6px, -8px) rotate(2deg); }
 }
 
 @keyframes title-sailing {
