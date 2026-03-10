@@ -12,18 +12,13 @@
     background-color: var(--sand) !important;
     color: var(--onyx) !important;
     
-    background-image: 
-        radial-gradient(circle, transparent 40%, rgba(0,0,0,0.4) 100%),
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E"),
-        linear-gradient(to bottom, #e6c288, #c2b280) !important;
-    background-size: 100% 100%, 512px 512px, 100% 100% !important;
-    background-attachment: fixed !important;
-    animation: sand-drift 60s linear infinite !important;
-}
-
-@keyframes sand-drift {
-    from { background-position: center center, 0 0, center center; }
-    to { background-position: center center, 512px -256px, center center; }
+    background-image:
+        linear-gradient(rgba(0,0,0,0.52), rgba(0,0,0,0.32)),
+        url("https://raw.githubusercontent.com/SaiiPrashanth/Neko_Gambit/main/Screenshots/Neko_Gambit_img_.jpg") !important;
+    background-size: cover !important;
+    background-position: center top !important;
+    background-attachment: scroll !important;
+    background-repeat: no-repeat !important;
 }
 
 #wrapper #inner_column, 
@@ -48,12 +43,12 @@
 
 #wrapper h1 {
     font-size: 4em !important;
-    color: #1a1a1a !important;
-    text-shadow: 2px 2px 0 var(--gold);
+    color: #f5e0b0 !important;
+    text-shadow: 2px 2px 0 var(--dark-gold);
 }
 
 #wrapper h2, #wrapper h3 {
-    color: var(--lapis) !important;
+    color: var(--gold) !important;
     border-bottom: 3px double var(--gold);
     display: inline-block;
     padding-bottom: 10px;
@@ -63,7 +58,7 @@
 #wrapper .feature-card b, 
 #wrapper .lore-panel strong {
     font-family: 'Cinzel Decorative', cursive !important;
-    color: var(--onyx) !important;
+    color: #f5e0b0 !important;
     display: block !important;
     margin-top: 10px !important;
     font-size: 1.3em !important;
@@ -73,7 +68,7 @@
 }
 
 #wrapper p, #wrapper li, .feature-card p {
-    color: var(--ancient-text) !important;
+    color: #f0dfc0 !important;
     font-family: 'Philosopher', sans-serif !important;
     font-size: 1.3em !important;
     line-height: 1.8 !important;
@@ -114,7 +109,6 @@
 .play_button,
 button.start_game {
     background: #e6c288 !important; /* Sandstone */
-    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E") !important;
     
     color: #3e2723 !important; /* Dark Brown Text */
     
